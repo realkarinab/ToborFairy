@@ -11,7 +11,8 @@
       "scopes":["openid"]
     },
     "permissions": [
-      "identity"
+      "identity",
+      "storage"
     ],
     "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvEPBe5fyp2ikmAoz4Cjxjdulazy6aRWSbsjqsWXWQi/iCbmLRXeT3erkPXt6EWJYVgr6HdV4j/kUXpQZYK/Nh4/GLqDDnWUxWRTjgjUrqG0bbs/aPFkI8a0juioyH8yCX5FtJiyKuEw1jv8Lt1u+x/etbGRaWLV9Bp/emKHQWDIgnAxCq0AmddG4vKSZY5m/gWww2ZmblyEgLpNHxhk9xrgPOUnHYLMBba7n8OiXFAkSDoe/31REOL4mKecrakHRa9t1cIFYQYTXHXQTZvxcjZ8iJ4KUeWKYJCMwPSTG2Y6mCxqdXr/rlO10VHKvA1yt9fFyH56uPT4NKKl1Cjfo4wIDAQAB"
   }
