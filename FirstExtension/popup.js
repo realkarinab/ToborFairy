@@ -29,30 +29,12 @@ chrome.storage.local.get("token", function(tokenStored) {
           "timeMin": new Date().toISOString(),
           "timeMax": new Date(Date.now() + 12096e5).toISOString()
       }), queryParams)
-      .then((response) => response.json()) // Transform the data into json
-      .then(function(data) {
-          if (response.ok) {
-            console.log(data);
-          } else {
-            throw new Error();
-          }
-          
-
-          // Process events to find free slots
-          const events = data.items || [];
-          const freeSlots = findFreeSlots(events);
-          console.log("Free Slots:", freeSlots);
-
-          // Find club events you can attend
-          const eventsYouCanAttend = clubEvents.filter(event => canAttendEvent(event, freeSlots));
-          console.log("Events you can attend:", eventsYouCanAttend);
-
-          // Add events to the user's Google Calendar
-          eventsYouCanAttend.forEach(event => {
-            insertEventToGoogleCalendar(event, tokenStored.token);
-        });
+      .then((response) => { if (response.ok) return response.json(); else throw new Error(); }) // Transform the data into json
+      .then(function(data) {      
+          useToken(token);
       }).catch(function(error){
         // if expired
+        console.log("error");
         chrome.identity.getAuthToken({ interactive: true }, function(token) {
           console.log(token);
 
@@ -126,11 +108,11 @@ function useToken(token) {
   const headers = new Headers({
     'Authorization': 'Bearer ' + token,
     'Content-Type': 'application/json'
-});
+    });
 
-const queryParams = { headers };
+    const queryParams = { headers };
 
-  fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events?' + new URLSearchParams({
+    fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events?' + new URLSearchParams({
               "timeMin": new Date().toISOString()
           }), queryParams)
           .then((response) => response.json()) // Transform the data into json
@@ -145,6 +127,19 @@ const queryParams = { headers };
               // Find club events you can attend
               const eventsYouCanAttend = clubEvents.filter(event => canAttendEvent(event, freeSlots));
               console.log("Events you can attend:", eventsYouCanAttend);
+              if (eventsYouCanAttend.length > 0) {
+                (async () => {
+                    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+                    const oneDay = 24 * 60 * 60 * 1000;
+                    const firstDate = new Date().setHours(0,1,0,0);
+                    const secondDate = new Date(eventsYouCanAttend[0].start.dateTime);
+                    const hours = secondDate.getHours()
+                    const diffDays = Math.round(Math.abs((secondDate.setHours(0,0,0,0) - firstDate) / oneDay));
+                    const response = await chrome.tabs.sendMessage(tab.id, {day: diffDays, hour: hours});
+                    // do something with response here, not outside the function
+                    console.log(response);
+                  })();
+              }
               return eventsYouCanAttend;
           }).catch(function(){
             console.log("caught!")
@@ -197,19 +192,6 @@ const clubEvents = [
           "timeZone": "America/Chicago"
       },
       "link": "https://www.instagram.com/wicys.utd/"
-  },
-{
-      "summary": "SWE Intro to React Workshop",
-"organization": "Society of Women Engineers",
-      "start": {
-          "dateTime": "2024-03-29T18:30:00-05:00",
-          "timeZone": "America/Chicago"
-      },
-      "end": {
-          "dateTime": "2024-03-29T19:30:00-05:00",
-          "timeZone": "America/Chicago"
-      },
-      "link": "https://www.instagram.com/sweutd/"
   },
 {
       "summary": "Women in STEM Panel: Discussions in STEM",
