@@ -9,9 +9,24 @@
 
 
 // Function to generate event card HTML
-function createEventCard(clubName, eventName, eventTime, eventLocation) {
+function createEventCard(clubId, clubName, eventName, eventTime, eventLocation) {
+    /*document.createElement("div").classList.add("card").innerHTML = `<div class="club-name">
+    <span class="club-text">${clubName}</span>
+</div>
+<div class="event-info">
+    <span class="event-name">${eventName}</span>
+    <div id="time-container">
+        <span class="event-time">${eventTime}</span>
+        <span class="event-location">${eventLocation}</span>
+    </div>
+</div>
+<button class= "circle button1">
+    <span class = "plus">+</span>
+</button>`
+
+    document.addEventListener("click", sendToContentScript)*/
     return `
-    <div class="card">
+    <div class="card" id=${clubId + "card"}>
         <div class="club-name">
             <span class="club-text">${clubName}</span>
         </div>
@@ -22,7 +37,7 @@ function createEventCard(clubName, eventName, eventTime, eventLocation) {
                 <span class="event-location">${eventLocation}</span>
             </div>
         </div>
-        <button class= "circle button1">
+        <button class= "circle button1" id=${clubId + "button"}>
             <span class = "plus">+</span>
         </button>
     </div>
@@ -31,9 +46,9 @@ function createEventCard(clubName, eventName, eventTime, eventLocation) {
  
  
  // Function to add event card to the cards container
- function addEventCard(clubName, eventName, eventTime, eventLocation) {
+ function addEventCard(clubId, clubName, eventName, eventTime, eventLocation) {
     const cardsContainer = document.getElementById('cards-container');
-    const eventCardHTML = createEventCard(clubName, eventName, eventTime, eventLocation);
+    const eventCardHTML = createEventCard(clubId, clubName, eventName, eventTime, eventLocation);
     cardsContainer.innerHTML += eventCardHTML;
  }
  
@@ -43,7 +58,7 @@ function createEventCard(clubName, eventName, eventTime, eventLocation) {
     console.log("Events retrieved from Chrome storage:", events);
     // Do something with the retrieved events
     events.forEach(event => {
-        addEventCard(event.organization, event.summary, (new Date(event.start.dateTime)).toLocaleDateString('en-US', {
+        addEventCard(event.pid, event.organization, event.summary, (new Date(event.start.dateTime)).toLocaleDateString('en-US', {
             weekday: 'short', // Short day of the week (e.g., "Fri")
             month: 'short',   // Short month name (e.g., "Mar")
             day: '2-digit',   // Two-digit day (e.g., "29")

@@ -46,7 +46,7 @@ chrome.storage.local.get("token", function(tokenStored) {
                   }
   
                   // Save the data to Chrome storage
-              chrome.storage.local.set({ events: eventsYouCanAttend }, function() {
+                chrome.storage.local.set({ events: eventsYouCanAttend }, function() {
                   console.log("Events saved to Chrome storage");
   });
             });
@@ -97,10 +97,11 @@ chrome.storage.local.get("token", function(tokenStored) {
           console.log("Events saved to Chrome storage")});
   
             // Add events to the user's Google Calendar
-            /*eventsYouCanAttend.forEach(event => {
-              insertEventToGoogleCalendar(event, tokenStored.token);
-          });*/
-  
+          eventsYouCanAttend.forEach(event => {
+            console.log(event.pid, event.toString());
+            document.getElementById(event.pid + "button").addEventListener("click", 
+                ()=>{insertEventToGoogleCalendar(event, tokenStored.token);});
+            });
   
         });
     }
@@ -166,6 +167,8 @@ chrome.storage.local.get("token", function(tokenStored) {
   
   // Function to insert an event to the user's Google Calendar
   function insertEventToGoogleCalendar(event, token) {
+    console.log("added", event.pid, event.toString()); 
+
     const headers = new Headers({
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json'
@@ -196,7 +199,8 @@ chrome.storage.local.get("token", function(tokenStored) {
             "dateTime": "2024-03-29T19:30:00-05:00",
             "timeZone": "America/Chicago"
         },
-        "location": "SCI 2.305"
+        "location": "SCI 2.305",
+        "pid": 0
     },
   {
         "summary": "Intro to CTFs",
@@ -209,7 +213,8 @@ chrome.storage.local.get("token", function(tokenStored) {
             "dateTime": "2024-03-27T20:30:00-05:00",
             "timeZone": "America/Chicago"
         },
-        "location": "GR 4.428"
+        "location": "GR 4.428",
+        "pid": 1
     },
   {
         "summary": "Women in STEM Panel: Discussions in STEM",
@@ -222,7 +227,8 @@ chrome.storage.local.get("token", function(tokenStored) {
             "dateTime": "2024-03-27T20:30:00-05:00",
             "timeZone": "America/Chicago"
         },
-        "location": "ECSW 1.355"
+        "location": "ECSW 1.355",
+        "pid": 2
     },
   {
         "summary": "Intro to Arduino Workshop",
@@ -236,6 +242,8 @@ chrome.storage.local.get("token", function(tokenStored) {
             "timeZone": "America/Chicago"
         },
         "location": "SCI 2.360"
+        ,
+        "pid": 3
     },
   {
         "summary": "ACM Olympics",
@@ -248,7 +256,8 @@ chrome.storage.local.get("token", function(tokenStored) {
             "dateTime": "2024-04-05T13:30:00-05:00",
             "timeZone": "America/Chicago"
         },
-        "location": "ECSS"
+        "location": "ECSS",
+        "pid": 4
     },
   {
         "summary": "Interview Workshop",
@@ -261,6 +270,7 @@ chrome.storage.local.get("token", function(tokenStored) {
             "dateTime": "2024-03-28T20:00:00-05:00",
             "timeZone": "America/Chicago"
         },
-        "location": "FO 1.202"
+        "location": "FO 1.202",
+        "pid": 5
     },
   ];

@@ -14,6 +14,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendresponse) {
   moveToDayHour(request.day, request.hour);
 });
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 // Function to move the image towards the specified coordinates
 function moveImage(image, targetX, targetY) {
     console.log("move function called :>");
@@ -32,9 +36,11 @@ function moveImage(image, targetX, targetY) {
       if (progress < 1) {
         requestAnimationFrame(move);
       }
+
     }
   
     requestAnimationFrame(move);
+
 }
 
 
@@ -57,6 +63,8 @@ function moveToDayHour(day, hour) {
   const mouseX = x - 30;
   const mouseY = y - 65;
   moveImage(img, mouseX, mouseY);
+
+
 }
 // window2.scrollTo(0, dayDiv.clientHeight - window2.clientHeight);
 // window2.scrollBy(0, dayDiv.clientHeight - window2.clientHeight);
