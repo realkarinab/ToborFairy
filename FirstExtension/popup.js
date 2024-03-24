@@ -1,8 +1,6 @@
-// chrome.tabs.create({url: 'index.html'});
-
-chrome.storage.local.get("token", function(tokenStored){
-    if (typeof tokenStored.token == 'undefined') {
-        chrome.identity.getAuthToken({interactive: true}, function(token) {
+chrome.storage.local.get("token", function(tokenStored) {
+  if (typeof tokenStored.token == 'undefined') {
+      chrome.identity.getAuthToken({ interactive: true }, function(token) {
           console.log(token);
 
           // save token
@@ -16,8 +14,8 @@ chrome.storage.local.get("token", function(tokenStored){
 
         // getFreeBusyFromToken(tokenStored.token);
 
-        const headers = new Headers({
-          'Authorization' : 'Bearer ' + tokenStored.token,
+      const headers = new Headers({
+          'Authorization': 'Bearer ' + tokenStored.token,
           'Content-Type': 'application/json'
         })
     
@@ -29,6 +27,11 @@ chrome.storage.local.get("token", function(tokenStored){
         .then((response) => response.json()) // Transform the data into json
         .then(function(data) {
             console.log(data);
+
+            // Process events to find free slots
+            const events = data.items || [];
+            const freeSlots = findFreeSlots(events);
+            console.log("Free Slots:", freeSlots);
         }).catch(function(error) {
             chrome.identity.getAuthToken({interactive: true}, function(token) {
               console.log("generated new token:" + token);
@@ -55,6 +58,11 @@ function getEventsFromToken(token) {
     .then((response) => response.json()) // Transform the data into json
     .then(function(data) {
         console.log(data);
+
+        // Process events to find free slots
+        const events = data.items || [];
+        const freeSlots = findFreeSlots(events);
+        console.log("Free Slots:", freeSlots);
     })
   });
 }
