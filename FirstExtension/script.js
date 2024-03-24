@@ -12,9 +12,9 @@ function createEventCard(clubName, eventName, eventTime, eventLocation) {
                 <span class="event-location">${eventLocation}</span>
             </div>
         </div>
-        <div class= "circle">
+        <button class= "circle button1">
             <span class = "plus">+</span>
-        </div>
+        </button>
     </div>
     `;
 }
@@ -26,7 +26,24 @@ function addEventCard(clubName, eventName, eventTime, eventLocation) {
     cardsContainer.innerHTML += eventCardHTML;
 }
 
+/*
 addEventCard("Society of Women Engineers","Intro to React", "6-7pm", "ECSW 1.315");
 addEventCard("Abel","bye abel", "8-9pm", "abel's car");
 addEventCard("SWE","Intro to React", "6-7pm", "ECSW 1.315");
 addEventCard("Abel","bye abel", "8-9pm", "abel's car");
+*/
+
+chrome.storage.local.get("events", function(data) {
+    const events = data.events;
+    console.log("Events retrieved from Chrome storage:", events);
+    // Do something with the retrieved events
+    events.forEach(event => {
+        addEventCard(event.organization, event.summary, (new Date(event.start.dateTime)).toLocaleDateString('en-US', {
+            weekday: 'short', // Short day of the week (e.g., "Fri")
+            month: 'short',   // Short month name (e.g., "Mar")
+            day: '2-digit',   // Two-digit day (e.g., "29")
+            year: 'numeric'   // Full year (e.g., "2024")
+        }), event.location);
+    });
+ });
+ 
