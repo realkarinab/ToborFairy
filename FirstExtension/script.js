@@ -7,10 +7,14 @@ function createEventCard(clubName, eventName, eventTime, eventLocation) {
         </div>
         <div class="event-info">
             <span class="event-name">${eventName}</span>
-            <span class="event-time">${eventTime}</span>
-            <span class="event-location">${eventLocation}</span>
+            <div id="time-container">
+                <span class="event-time">${eventTime}</span>
+                <span class="event-location">${eventLocation}</span>
+            </div>
         </div>
-        <div class= "circle"></div>
+        <div class= "circle">
+            <span class = "plus">+</span>
+        </div>
     </div>
     `;
 }
@@ -22,7 +26,7 @@ function addEventCard(clubName, eventName, eventTime, eventLocation) {
     cardsContainer.innerHTML += eventCardHTML;
 }
 
-addEventCard("SWE","Intro to React", "6-7pm", "ECSW 1.315");
+addEventCard("Society of Women Engineers","Intro to React", "6-7pm", "ECSW 1.315");
 addEventCard("Abel","bye abel", "8-9pm", "abel's car");
 addEventCard("SWE","Intro to React", "6-7pm", "ECSW 1.315");
 addEventCard("Abel","bye abel", "8-9pm", "abel's car");
