@@ -8,7 +8,7 @@
     },
     "oauth2": {
       "client_id": "285572556930-mfou1j1ijjlsa3uh2s0rpf44op8kghq0.apps.googleusercontent.com",
-      "scopes":["openid"]
+      "scopes":["openid", "https://www.googleapis.com/auth/calendar"]
     },
     "permissions": [
       "identity",
