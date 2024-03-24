@@ -65,7 +65,7 @@ chrome.storage.local.get("token", function(tokenStored) {
             "timeMin": new Date().toISOString(),
             "timeMax": new Date(Date.now() + 12096e5).toISOString()
         }), queryParams)
-        .then((response) => response.json()) // Transform the data into json
+        .then((response) => {if (response.ok) return response.json(); else throw new Error()}) // Transform the data into json
         .then(function(data) {
             console.log(data);
   
@@ -103,6 +103,58 @@ chrome.storage.local.get("token", function(tokenStored) {
                 ()=>{insertEventToGoogleCalendar(event, tokenStored.token);});
             });
   
+        }).catch(function() {
+            chrome.identity.getAuthToken({ interactive: true }, function(token) {
+                console.log(token);
+      
+                // Save token
+                chrome.storage.local.set({ "token": token }, function() {});
+      
+                const headers = new Headers({
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                });
+      
+                const queryParams = { headers };
+      
+                fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events?' + new URLSearchParams({
+                    "timeMin": new Date().toISOString()
+                }), queryParams)
+                .then((response) => response.json()) // Transform the data into json
+                .then(function(data) {
+                    console.log(data);
+      
+                    // Process events to find free slots
+                    const events = data.items || [];
+                    const freeSlots = findFreeSlots(events);
+                    console.log("Free Slots:", freeSlots);
+      
+                    // Find club events you can attend
+                    const eventsYouCanAttend = clubEvents.filter(event => canAttendEvent(event, freeSlots));
+                    console.log("Events you can attend:", eventsYouCanAttend);
+    
+                    if (eventsYouCanAttend.length > 0) {
+                        (async () => {
+                            const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+                            if (tab.url.includes("https://calendar.google.com/")) {
+                                const oneDay = 24 * 60 * 60 * 1000;
+                                const firstDate = new Date().setHours(0,1,0,0);
+                                const secondDate = new Date(eventsYouCanAttend[0].start.dateTime);
+                                const hours = secondDate.getHours()
+                                const diffDays = Math.round(Math.abs((secondDate.setHours(0,0,0,0) - firstDate) / oneDay));
+                                const response = await chrome.tabs.sendMessage(tab.id, {day: diffDays, hour: hours});
+                                // do something with response here, not outside the function
+                                console.log(response);
+                            }
+                            })(); 
+                      }
+      
+                      // Save the data to Chrome storage
+                    chrome.storage.local.set({ events: eventsYouCanAttend }, function() {
+                      console.log("Events saved to Chrome storage");
+      });
+                });
+            });
         });
     }
   });
