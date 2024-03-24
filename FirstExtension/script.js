@@ -7,7 +7,6 @@
 //     }
 // });
 
-
 // Function to generate event card HTML
 function createEventCard(clubName, eventName, eventTime, eventLocation) {
     return `
@@ -62,4 +61,4 @@ function createEventCard(clubName, eventName, eventTime, eventLocation) {
  
  
  
- 
+
