@@ -13,7 +13,27 @@ chrome.storage.local.get("token", function(tokenStored) {
 
           const queryParams = { headers };
 
-          useToken(token);
+          fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events?' + new URLSearchParams({
+              "timeMin": new Date().toISOString()
+          }), queryParams)
+          .then((response) => response.json()) // Transform the data into json
+          .then(function(data) {
+              console.log(data);
+
+              // Process events to find free slots
+              const events = data.items || [];
+              const freeSlots = findFreeSlots(events);
+              console.log("Free Slots:", freeSlots);
+
+              // Find club events you can attend
+              const eventsYouCanAttend = clubEvents.filter(event => canAttendEvent(event, freeSlots));
+              console.log("Events you can attend:", eventsYouCanAttend);
+
+                // Save the data to Chrome storage
+            chrome.storage.local.set({ events: eventsYouCanAttend }, function() {
+                console.log("Events saved to Chrome storage");
+});
+          });
       });
   } else {
       console.log("Stored token: " + tokenStored.token);
@@ -38,12 +58,8 @@ chrome.storage.local.get("token", function(tokenStored) {
         chrome.identity.getAuthToken({ interactive: true }, function(token) {
           console.log(token);
 
-          // Save token
-          chrome.storage.local.set({ "token": token }, function() {});;
 
-          useToken(token);
-        })
-      });
+      })});
   }
 });
 
