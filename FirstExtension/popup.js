@@ -13,22 +13,7 @@ chrome.storage.local.get("token", function(tokenStored) {
 
           const queryParams = { headers };
 
-          fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events?' + new URLSearchParams({
-              "timeMin": new Date().toISOString()
-          }), queryParams)
-          .then((response) => response.json()) // Transform the data into json
-          .then(function(data) {
-              console.log(data);
-
-              // Process events to find free slots
-              const events = data.items || [];
-              const freeSlots = findFreeSlots(events);
-              console.log("Free Slots:", freeSlots);
-
-              // Find club events you can attend
-              const eventsYouCanAttend = clubEvents.filter(event => canAttendEvent(event, freeSlots));
-              console.log("Events you can attend:", eventsYouCanAttend);
-          });
+          useToken(token);
       });
   } else {
       console.log("Stored token: " + tokenStored.token);
@@ -46,7 +31,12 @@ chrome.storage.local.get("token", function(tokenStored) {
       }), queryParams)
       .then((response) => response.json()) // Transform the data into json
       .then(function(data) {
-          console.log(data);
+          if (response.ok) {
+            console.log(data);
+          } else {
+            throw new Error();
+          }
+          
 
           // Process events to find free slots
           const events = data.items || [];
@@ -61,6 +51,16 @@ chrome.storage.local.get("token", function(tokenStored) {
           eventsYouCanAttend.forEach(event => {
             insertEventToGoogleCalendar(event, tokenStored.token);
         });
+      }).catch(function(error){
+        // if expired
+        chrome.identity.getAuthToken({ interactive: true }, function(token) {
+          console.log(token);
+
+          // Save token
+          chrome.storage.local.set({ "token": token }, function() {});;
+
+          useToken(token);
+        })
       });
   }
 });
@@ -120,6 +120,35 @@ function findFreeSlots(events) {
   });
 
   return freeSlots;
+}
+
+function useToken(token) {
+  const headers = new Headers({
+    'Authorization': 'Bearer ' + token,
+    'Content-Type': 'application/json'
+});
+
+const queryParams = { headers };
+
+  fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events?' + new URLSearchParams({
+              "timeMin": new Date().toISOString()
+          }), queryParams)
+          .then((response) => response.json()) // Transform the data into json
+          .then(function(data) {
+              console.log(data);
+
+              // Process events to find free slots
+              const events = data.items || [];
+              const freeSlots = findFreeSlots(events);
+              console.log("Free Slots:", freeSlots);
+
+              // Find club events you can attend
+              const eventsYouCanAttend = clubEvents.filter(event => canAttendEvent(event, freeSlots));
+              console.log("Events you can attend:", eventsYouCanAttend);
+              return eventsYouCanAttend;
+          }).catch(function(){
+            console.log("caught!")
+          });
 }
 
 // Function to insert an event to the user's Google Calendar
