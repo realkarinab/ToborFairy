@@ -1,9 +1,42 @@
 {
     "manifest_version": 3,
-    "name": "Hello Extensions of the world!",
-    "description": "Base Level Extension",
+    "name": "ToborFairy",
+    "description": "An extension that brings ToborFairy to your browser. He's enchanted to meet you.",
     "version": "1.0",
+    "content_scripts": [
+      {
+          "matches": [
+              "http://*/*",
+              "https://*/*",
+              "<all_urls>"
+          ],
+          "js": [
+              "content.js"
+          ]
+      }
+    ],
     "action": {
       "default_popup": "hello.html"
-    }
+    },
+    "icons": {
+      "128": "icon.png"
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "web_accessible_resources": [
+      {
+        "resources": [ "smallToborFairy.png", "mediumToborFairy.png, toborFairy.png", 
+                        "toborFairyBlink.gif", "smallToborBlink.gif", "textBubble1.png",
+                        "Rectangle73.png"
+                      ],
+        "matches": [ "<all_urls>" ]
+      }
+    ],
+    "permissions": [
+      "activeTab",
+      "storage",
+      "tabs",
+      "<all_urls>"
+    ]
   }
