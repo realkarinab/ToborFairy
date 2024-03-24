@@ -38,9 +38,9 @@ function moveImage(image, targetX, targetY) {
 }
 
 
-function moveToDayHour() {
-  var dayNum = 0;
-  var hourNum = 12;
+function moveToDayHour(day, hour) {
+  var dayNum = day;
+  var hourNum = hour;
   var dayDiv = document.querySelectorAll(".QIYAPb")[dayNum];
   var window2 = document.querySelector('[jsname="QbbJ2c"]');
   dayDiv.classList.add("highlighted_div");

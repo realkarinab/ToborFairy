@@ -17,10 +17,14 @@ function createEventCard(clubName, eventName, eventTime, eventLocation) {
         </div>
         <div class="event-info">
             <span class="event-name">${eventName}</span>
-            <span class="event-time">${eventTime}</span>
-            <span class="event-location">${eventLocation}</span>
+            <div id="time-container">
+                <span class="event-time">${eventTime}</span>
+                <span class="event-location">${eventLocation}</span>
+            </div>
         </div>
-        <div class= "circle"></div>
+        <button class= "circle button1">
+            <span class = "plus">+</span>
+        </button>
     </div>
     `;
  }

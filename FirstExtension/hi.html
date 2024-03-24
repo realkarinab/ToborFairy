@@ -76,7 +76,7 @@
            right: 0;
            top: 3;
            margin-top: 20px;
-           overflow: scroll;
+           overflow: hidden;
        }
 
        #rectangle2 {
@@ -171,6 +171,8 @@
            display: flex;
            flex-direction: row;
            align-items: center;
+           border: none;
+           cursor: pointer;
        }
 
        .circle2 {
@@ -208,7 +210,7 @@
            font-size: 13px;
         
            padding-top: 5px;
-           padding-left: 9px;
+           padding-left: 2px;
            padding-right: 5px;
            padding-bottom: 7px;
        }
@@ -268,7 +270,7 @@
        font-size: 13px;
        }
 
-       .bar-name {
+.bar-name {
        display: flex;
        font-family: 'Playfair Display', sans-serif;
        color: #224331;
@@ -335,11 +337,12 @@
            top: 0;
            margin-top: 20px;
            margin-bottom: 30px;
-           overflow: scroll;
+           overflow-x: hidden;
+           overflow-y: scroll;
        }
 
-       .bar {
-           width: 75%;
+       .back {
+           width: 240px;
            height: 25px; /* Adjusted height for the rectangle */
            background-color: #96B0A5; /* Your desired color */
            /*border: 2px solid black;*/
@@ -351,10 +354,30 @@
            display: flex;
            flex-direction: row;
            align-items: right;
+           border: none;
+           cursor: pointer;
+       }
+       
+       .bar {
+           width: 120px;
+           height: 25px; /* Adjusted height for the rectangle */
+           background-color: #96B0A5; /* Your desired color */
+           /*border: 2px solid black;*/
+           border-radius: 7px; /* Adjust the value to change the roundness */
+           margin-top: 0px;
+           margin-left: 0px;
+           margin-bottom: 5px;
+           margin-right: 0px;
+           display: flex;
+           flex-direction: row;
+           align-items: right;
+           border: none;
+           cursor: pointer;
        }
 
+
        .left {
-           width: 50%;
+           width: 120px;
            height: 25px; /* Adjusted height for the rectangle */
            background-color: #ede9da; /* Your desired color */
            /*border: 2px solid black;*/
@@ -365,12 +388,17 @@
            margin-bottom: 5px;
            margin-right: 0px;
            */
-           margin-left: 42px;
+           margin-left: 0px;
            display: flex;
            flex-direction: row;
            align-items: center;
+           border: none;
+           cursor: pointer;
+           margin-top: 0px;
+           margin-bottom: 10px;
            
        }
+
 
        .right {
            width: 50%;
@@ -400,16 +428,18 @@
 <body>
     <div id="container">
         <div id="header">
-            <img src="diamond.png" alt="Animated GIF" width="30" height="30">
+
             <span id = "text">ToborFairy</span>
         </div>
         <div id="rectangle">
             <div id="options-container">
-                <div class= "bar">
-                    <span class="bar-name">my orgs</span>
-                    <div class= "left">
+                <div class = "back">
+                    <button class= "bar">
+                        <span class="bar-name">my orgs</span>
+                    </button>
+                    <button class= "left">
                         <span class="bar-name">available</span>
-                    </div>
+                    </button>
                 </div>
             </div>
             <div id = "scroll-container">
