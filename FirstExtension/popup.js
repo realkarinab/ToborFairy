@@ -127,6 +127,11 @@ function useToken(token) {
               // Find club events you can attend
               const eventsYouCanAttend = clubEvents.filter(event => canAttendEvent(event, freeSlots));
               console.log("Events you can attend:", eventsYouCanAttend);
+
+            // Save the data to Chrome storage
+            chrome.storage.local.set({ events: eventsYouCanAttend }, function() {
+            console.log("Events saved to Chrome storage")});
+
               if (eventsYouCanAttend.length > 0) {
                 (async () => {
                     const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
