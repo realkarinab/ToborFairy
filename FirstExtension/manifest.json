@@ -28,7 +28,7 @@
       {
         "resources": [ "smallToborFairy.png", "mediumToborFairy.png, toborFairy.png", 
                         "toborFairyBlink.gif", "smallToborBlink.gif", "textBubble1.png",
-                        "Rectangle73.png"
+                        "Rectangle73.png", "loading.gif"
                       ],
         "matches": [ "<all_urls>" ]
       }

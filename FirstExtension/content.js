@@ -16,23 +16,26 @@ function sleep(ms) {
   }
 
 // Listen for clicks and move the image towards the click coordinates
-document.addEventListener("click", function(event) {
+document.addEventListener("keydown", function(event) {
     console.log("hey!!!!!!!!!!!!!!");
 
     console.log((event.clientX - 16) + 'px');
     console.log((event.clientY - 16) + 'px');
 
-  const mouseX = event.clientX -50;
-  const mouseY = event.clientY -50;
+//   const mouseX = event.clientX -50;
+//   const mouseY = event.clientY -50;
+    const mouseX = 550;
+    const mouseY = 350;
 
   const bubble = document.createElement('img');
   const txt = document.createElement('img');
+  const load = document.createElement('img');
   //move towards mouse
   if (state == 0) {
     moveImage(img, mouseX, mouseY);
 
     sleep(1000).then(() => { 
-        bubble.style.zindex = '999999999';
+        bubble.style.zindex = '2147483647';
         bubble.style.left = (mouseX - 160) + "px";
         bubble.style.top = (mouseY + 30) +"px";  
         bubble.style.position = 'absolute';
@@ -42,21 +45,39 @@ document.addEventListener("click", function(event) {
 
         bubble.src = chrome.runtime.getURL('Rectangle73.png');
         document.body.appendChild(bubble);
-    
-        txt.style.zindex = '9999999999';
-        txt.style.left = (mouseX - 150) + "px";
-        txt.style.top = (mouseY + 40) +"px";  
-        txt.style.position = 'absolute';
-        txt.style.width = "170px";
-        txt.src = chrome.runtime.getURL('textBubble1.png');
+
+
+        load.style.zindex = '2147483647';
+        load.style.left = (mouseX - 90) + "px";
+        load.style.top = (mouseY + 60) +"px";  
+        load.style.position = 'absolute';
+        load.style.width = "50px";
+        load.src = chrome.runtime.getURL('loading.gif');
         
-        txt.style.opacity = 1;
+        load.style.opacity = 1;
         
-        document.body.appendChild(txt);
+        document.body.appendChild(load);
+
     
         console.log("generated text?");
 
-        sleep(10000).then(() => { 
+        sleep(1500).then(() => { 
+            load.style.opacity = 0;
+
+
+            txt.style.zindex = '2147483647';
+            txt.style.left = (mouseX - 150) + "px";
+            txt.style.top = (mouseY + 40) +"px";  
+            txt.style.position = 'absolute';
+            txt.style.width = "170px";
+            txt.src = chrome.runtime.getURL('textBubble1.png');
+            
+            txt.style.opacity = 1;
+            
+            document.body.appendChild(txt);
+        });
+
+        sleep(7000).then(() => { 
             bubble.style.opacity = 0;
             txt.style.opacity = 0;
         });
