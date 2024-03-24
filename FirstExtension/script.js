@@ -7,7 +7,6 @@
 //     }
 // });
 
-
 // Function to generate event card HTML
 function createEventCard(clubId, clubName, eventName, eventTime, eventLocation) {
     /*document.createElement("div").classList.add("card").innerHTML = `<div class="club-name">
@@ -77,4 +76,4 @@ function createEventCard(clubId, clubName, eventName, eventTime, eventLocation) 
  
  
  
- 
+
