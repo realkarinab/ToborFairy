@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,10 +17,10 @@
        /* event card */
        .card {
            width: 100%;
-           height: 100px;
+           height: 100%;
            background-color: #365243; /* Corrected color for the event box */
            border-radius: 20px;
-           margin-top: 30px;
+           margin-top: 20px;
            display: flex;
            flex-direction: row;
            align-items: left;
@@ -28,7 +29,7 @@
        .club-name {
        width: 37%;
        height: 90%;
-       background-color: #96B0A5;
+       background-color: #ede9da;
        border-radius: 20px;
        margin: 5px;
        display: flex;
@@ -52,8 +53,9 @@
            background-color: #96B0A5; /* Changed to the new color */
            /*border: 2px solid black;*/
            border-radius: 5px; /* Adjust the value to change the roundness */
-           margin-bottom: 10px;
+           margin-bottom: 0px;
            display: flex;
+           flex-direction: row;
            justify-content: center;
            align-items: center;
        }
@@ -61,19 +63,19 @@
        #rectangle {
           /* Adjusted width to match Grammarly extension */
           width: 100%;
-          height: 360px; /* Adjusted height for the rectangle */
+          height: 380px; /* Adjusted height for the rectangle */
            background-color: #224331; /* Your desired color */
            /*border: 2px solid black;*/
-           border-radius: 10px; /* Adjust the value to change the roundness */
+           border-radius: 0px; /* Adjust the value to change the roundness */
            display: flex;
            flex-direction: column;
            align-items: center;
            position: absolute;
-           bottom: 1;
+           bottom: 0;
            left: 0;
            right: 0;
            top: 3;
-           margin-top: 40px;
+           margin-top: 20px;
            overflow: scroll;
        }
 
@@ -90,26 +92,39 @@
            align-items: left;
        }
 
+       #options-container {
+           width: 100%;
+           height: 20px; /* Adjusted height for the rectangle */
+           /*border: 2px solid black;*/
+           display: flex;
+           flex-direction: row;
+           align-items: center;
+           margin-top: 5px;
+           margin-bottom: 10px;
+           padding-left: 40xp;
+
+       }
+
        #text {
            font-family: 'Aclonica', sans-serif;
            color: #224331;
-           font-size: 23px;
-           padding-right: 150px;
-           padding-top: 20px;
+           font-size: 28px;
+           padding-right: 100px;
+           padding-top: 15px;
        }
 
        #text2 {
-           font-family: 'Aclonica', sans-serif;
+           font-family: 'Playfair Display', sans-serif;
            color: #f4f3ef;
-           font-size: 23px;
-           padding-top: 20px;
+           font-size: 18px;
+           padding-top: 0px;
        }
 
        #gift-container {
            position: absolute;
            bottom: 0;
            left: 0;
-           padding: 5px;
+           padding: 0px;
        }
 
        #clubName {
@@ -146,21 +161,38 @@
        .circle {
            width: 25px;
            height: 25px; /* Adjusted height for the rectangle */
-           background-color: #96B0A5; /* Your desired color */
+           background-color: #ede9da; /* Your desired color */
            /*border: 2px solid black;*/
            border-radius: 60px; /* Adjust the value to change the roundness */
-           margin-top: 20px;
+           margin-top: 25px;
            margin-left: 0px;
            margin-bottom: 5px;
+           margin-right: 0px;
            display: flex;
            flex-direction: row;
            align-items: center;
        }
 
+       .circle2 {
+           width: 80px;
+           height: 80px; /* Adjusted height for the rectangle */
+           background-color: #224331; /* Your desired color */
+           /*border: 2px solid black;*/
+           border-radius: 60px; /* Adjust the value to change the roundness */
+           margin-top: 25px;
+           margin-left: 10px;
+           margin-bottom: 0px;
+           margin-right: 0px;
+           display: flex;
+           flex-direction: row;
+           align-items: left;
+
+       }
+
        #clubText {
-           font-family: 'Adamina', sans-serif;
+           font-family: 'Playfair Display', sans-serif;
            color: white;
-           font-size: 12px;
+           font-size: 15px;
           
            margin-top: 9px;
            margin-left: 7px;
@@ -169,9 +201,10 @@
           
        }
 
-       #plus {
-           font-family: 'Adamina', sans-serif;
-           color: white;
+
+       .plus {
+           font-family: 'Playfair Display', sans-serif;
+           color: #365243;
            font-size: 13px;
         
            padding-top: 5px;
@@ -181,7 +214,7 @@
        }
 
        .event-info {
-       width: 45%;
+       width: 100px;
        height: 90%;
        margin-top: 13px;
        margin-left: 7px;
@@ -193,61 +226,70 @@
 
 
        #info-container {
-           width: 45%;
+           width: 5px;
            height: 90%; /* Adjusted height for the rectangle */
            margin-top: 13px;
            display: flex;
            flex-direction: column;
            align-items: left;
            margin-left: 7px;
-           margin-bottom: 20px;
        }
 
 
        .card-content {
        display: flex;
-       margin-top: 13px;
+       margin-top: 5px;
        }
 
 
        #eventText {
-           font-family: 'Adamina', sans-serif;
+           font-family: 'Actor', sans-serif;
            color: white;
            font-size: 10px;
        }
     
        .club-text {
-        font-family: 'Adamina', sans-serif;
-           color: white;
+        font-family: 'Playfair Display', sans-serif;
+           color: #224331;
            font-size: 12px;
           
            margin-top: 9px;
            margin-left: 7px;
            margin-right: 7px;
            margin-bottom: 7px;
+           align-self: center;
        }
 
 
        .event-name {
        display: flex;
-       font-family: 'Adamina', sans-serif;
+       font-family: 'Playfair Display', sans-serif;
        color: white;
-       font-size: 10px;
+       font-size: 13px;
+       }
+
+       .bar-name {
+       display: flex;
+       font-family: 'Playfair Display', sans-serif;
+       color: #224331;
+       font-size: 13px;
+       margin-left: 30px;
+       margin-top: 3px;
        }
 
        #cards-container {
           width: 75%;
           height: 200px; /* Adjusted height for the rectangle */
            border-radius: 20px; /* Adjust the value to change the roundness */
-           margin-top: 30px;
+           margin-top: 0px;
            display: flex;
            flex-direction: column;
        }
 
 
        #time-container {
-           width: 45%;
-           height: 50%; /* Adjusted height for the rectangle */
+           width: 45px;
+           height: 20px; /* Adjusted height for the rectangle */
            margin-top: 15px;
        }
 
@@ -261,54 +303,125 @@
 
        .event-time {
        display: flex;
-       font-family: 'Adamina', sans-serif;
+       font-family: 'Playfair Display', sans-serif;
        color: white;
+       margin-top: 10px;
        font-size: 10px;
-       line-height: 0;
+       line-height: 1;
        } 
 
        .event-location {
        display: flex;
-       font-family: 'Adamina', sans-serif;
+       font-family: 'Playfair Display', sans-serif;
        color: white;
        font-size: 10px;
-       }
+       }  
+
 
        #scroll-container {
         /* Adjusted width to match Grammarly extension */
-            width: 100%;
-           height: 80%; /* Adjusted height for the rectangle */
+           width: 100%;
+           height: 90%; /* Adjusted height for the rectangle */
            background-color: #224331; /* Your desired color */
            /*border: 2px solid black;*/
            border-radius: 10px; /* Adjust the value to change the roundness */
            display: flex;
            flex-direction: column;
            align-items: center;
-           position: absolute;
-           bottom: 1;
+           /*position: absolute;
+           bottom: 1; */
            left: 0;
            right: 0;
-           top: 3;
-           margin-top: 40px;
+           top: 0;
+           margin-top: 20px;
+           margin-bottom: 30px;
            overflow: scroll;
        }
 
+       .bar {
+           width: 75%;
+           height: 25px; /* Adjusted height for the rectangle */
+           background-color: #96B0A5; /* Your desired color */
+           /*border: 2px solid black;*/
+           border-radius: 7px; /* Adjust the value to change the roundness */
+           margin-top: 25px;
+           margin-left: 40px;
+           margin-bottom: 5px;
+           margin-right: 0px;
+           display: flex;
+           flex-direction: row;
+           align-items: right;
+       }
+
+       .left {
+           width: 50%;
+           height: 25px; /* Adjusted height for the rectangle */
+           background-color: #ede9da; /* Your desired color */
+           /*border: 2px solid black;*/
+           border-radius: 7px; /* Adjust the value to change the roundness */
+           /*
+           margin-top: 25px;
+           margin-left: 40px;
+           margin-bottom: 5px;
+           margin-right: 0px;
+           */
+           margin-left: 42px;
+           display: flex;
+           flex-direction: row;
+           align-items: center;
+           
+       }
+
+       .right {
+           width: 50%;
+           height: 25px; /* Adjusted height for the rectangle */
+           background-color: #ede9da; /* Your desired color */
+           /*border: 2px solid black;*/
+           border-radius: 7px; /* Adjust the value to change the roundness */
+           /*
+           margin-top: 25px;
+           margin-left: 40px;
+           margin-bottom: 5px;
+           margin-right: 0px;
+           */
+           display: flex;
+           flex-direction: row;
+           align-items: center;
+       }
+
+    
+
     </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair Display">
+
     <script type="text/javascript" src="popup.js"></script>
 </head>
 <body>
     <div id="container">
         <div id="header">
+            <img src="diamond.png" alt="Animated GIF" width="30" height="30">
             <span id = "text">ToborFairy</span>
         </div>
-        <div id="rectangle" onscroll >
+        <div id="rectangle">
+            <div id="options-container">
+                <div class= "bar">
+                    <span class="bar-name">my orgs</span>
+                    <div class= "left">
+                        <span class="bar-name">available</span>
+                    </div>
+                </div>
+            </div>
             <div id = "scroll-container">
                 <span id = "text2">Today, March 23</span>
                 <div id="cards-container"></div>
             </div>
             <div id="gift-container">
-                <img src="tobor2.gif" alt="Animated GIF" width="120" height="120">
+                <div class = "circle2">
+                    <div id="gift-container">
+                        <img src="tobor2.gif" alt="Animated GIF" width="90" height="100">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

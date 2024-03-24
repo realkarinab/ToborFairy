@@ -196,7 +196,7 @@ chrome.storage.local.get("token", function(tokenStored) {
             "dateTime": "2024-03-29T19:30:00-05:00",
             "timeZone": "America/Chicago"
         },
-        "link": "https://www.instagram.com/sweutd/"
+        "location": "SCI 2.305"
     },
   {
         "summary": "Intro to CTFs",
@@ -209,20 +209,7 @@ chrome.storage.local.get("token", function(tokenStored) {
             "dateTime": "2024-03-27T20:30:00-05:00",
             "timeZone": "America/Chicago"
         },
-        "link": "https://www.instagram.com/wicys.utd/"
-    },
-  {
-        "summary": "SWE Intro to React Workshop",
-  "organization": "Society of Women Engineers",
-        "start": {
-            "dateTime": "2024-03-29T18:30:00-05:00",
-            "timeZone": "America/Chicago"
-        },
-        "end": {
-            "dateTime": "2024-03-29T19:30:00-05:00",
-            "timeZone": "America/Chicago"
-        },
-        "link": "https://www.instagram.com/sweutd/"
+        "location": "GR 4.428"
     },
   {
         "summary": "Women in STEM Panel: Discussions in STEM",
@@ -235,7 +222,7 @@ chrome.storage.local.get("token", function(tokenStored) {
             "dateTime": "2024-03-27T20:30:00-05:00",
             "timeZone": "America/Chicago"
         },
-        "link": "https://www.instagram.com/acmutd/"
+        "location": "ECSW 1.355"
     },
   {
         "summary": "Intro to Arduino Workshop",
@@ -248,7 +235,7 @@ chrome.storage.local.get("token", function(tokenStored) {
             "dateTime": "2024-03-29T21:00:00-05:00",
             "timeZone": "America/Chicago"
         },
-        "link": "https://www.instagram.com/sweutd/"
+        "location": "SCI 2.360"
     },
   {
         "summary": "ACM Olympics",
@@ -261,7 +248,7 @@ chrome.storage.local.get("token", function(tokenStored) {
             "dateTime": "2024-04-05T13:30:00-05:00",
             "timeZone": "America/Chicago"
         },
-        "link": "https://www.instagram.com/acmutd/"
+        "location": "ECSS"
     },
   {
         "summary": "Interview Workshop",
@@ -274,7 +261,6 @@ chrome.storage.local.get("token", function(tokenStored) {
             "dateTime": "2024-03-28T20:00:00-05:00",
             "timeZone": "America/Chicago"
         },
-        "link": "https://www.instagram.com/utdgwc/"
+        "location": "FO 1.202"
     },
   ];
-
