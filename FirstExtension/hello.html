@@ -10,6 +10,30 @@
             height: 430px;
             width: 300px;
         }
+
+        /* event card */
+        .card {
+            width: 100%;
+            height: 70px;
+            background-color: #365243; /* Corrected color for the event box */
+            border-radius: 20px;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+        }
+
+        .club-name {
+        width: 37%;
+        height: 90%;
+        background-color: #96B0A5;
+        border-radius: 20px;
+        margin: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+
         /* Style for the rectangular box */
         #container {
             display: flex;
@@ -137,6 +161,17 @@
             padding-bottom: 7px;
         }
 
+        .event-info {
+        width: 45%;
+        height: 90%;
+        margin-top: 13px;
+        margin-left: 7px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        }
+
         #info-container {
             width: 45%; 
             height: 90%; /* Adjusted height for the rectangle */
@@ -148,10 +183,29 @@
             margin-bottom: 20px;
         }
 
+        .card-content {
+        margin-top: 13px;
+        }
+
         #eventText {
             font-family: 'Adamina', sans-serif;
             color: white;
             font-size: 10px;
+        }
+
+        .event-name {
+        font-family: 'Adamina', sans-serif;
+        color: white;
+        font-size: 10px;
+        }
+
+        #cards-container {
+           width: 75%; 
+           height: 70px; /* Adjusted height for the rectangle */
+            border-radius: 20px; /* Adjust the value to change the roundness */
+            margin-top: 30px;
+            display: flex;
+            flex-direction: row;
         }
 
         #time-container {
@@ -167,10 +221,20 @@
             line-height: 0;
         }
 
+        .event-time {
+        font-family: 'Adamina', sans-serif;
+        color: white;
+        font-size: 7px;
+        line-height: 0;
+        }   
 
+        .event-location {
+        font-family: 'Adamina', sans-serif;
+        color: white;
+        font-size: 7px;
+        }
     </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica">
-    <script type="text/javascript" src="popup.js"></script>
 </head>
 <body>
     <div id="container">
@@ -179,25 +243,39 @@
         </div>
         <div id="rectangle">
             <span id="text2">Today, March 23</span>
-            <div id ="rectangle2">
-                <div id = "clubName">
-                    <span id="clubText">Society of Women Engineers</span>
-                </div>
-                <div id= "info-container">
-                    <span id="eventText">Intro to React</span>
-                    <div id = "time-container">
-                        <span id="timeText">6-7pm</span>
-                        <span id="timeText">ECSW 1.315</span>
-                    </div>
-                </div>
-                <div id = "addCircle">
-                    <span id="plus">+</span>
-                </div>
-            </div>
+            <div id="cards-container"></div>
             <div id="gift-container">
                 <img src = "tobor.gif" alt="Animated GIF" width="120" height="120">
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="popup.js"></script>
+    <script type="text/javascript">
+    
+        // Function to generate event card HTML
+        function createEventCard(eventName, eventTime, eventLocation) {
+            return `
+            <div class="card">
+                <div class="club-name">
+                    <span class="event-name">${eventName}</span>
+                </div>
+                <div class="event-info">
+                    <span class="event-time">${eventTime}</span>
+                    <span class="event-location">${eventLocation}</span>
+                </div>
+            </div>
+        `;
+        }
+
+    // Function to add event card to the cards container
+    function addEventCard(eventName, eventTime, eventLocation) {
+        const cardsContainer = document.getElementById('cards-container');
+        const eventCardHTML = createEventCard(eventName, eventTime, eventLocation);
+        cardsContainer.innerHTML += eventCardHTML;
+    }
+
+    addEventCard("Intro to React", "6-7pm", "ECSW 1.315");
+
+    </script>
 </body>
 </html>
