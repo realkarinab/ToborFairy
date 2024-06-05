@@ -1,17 +1,41 @@
 {
     "manifest_version": 3,
-    "name": "Hello Extensions of the world!",
-    "description": "Base Level Extension",
+    "name": "ToborFairy",
+    "description": "An extension to bring ToborFairy to your browser. He's enchanted to meet you.",
     "version": "1.0",
     "action": {
       "default_popup": "hi.html"
     },
     "oauth2": {
       "client_id": "285572556930-mfou1j1ijjlsa3uh2s0rpf44op8kghq0.apps.googleusercontent.com",
-      "scopes":["openid"]
+      "scopes":["openid", "https://www.googleapis.com/auth/calendar"]
     },
+    "icons": {
+      "128": "icon.png"
+    },
+    "content_scripts": [
+      {
+        "js": ["content2.js"],
+        "css": ["content.css"],
+        "matches": [
+          "https://calendar.google.com/*"
+        ]
+      }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": [ "smallToborFairy.png", "mediumToborFairy.png, toborFairy.png", 
+                        "toborFairyBlink.gif", "smallToborBlink.gif", "textBubble1.png",
+                        "Rectangle73.png", "loading.gif"
+                      ],
+        "matches": [ "<all_urls>" ]
+      }
+    ],
     "permissions": [
-      "identity"
+      "identity",
+      "storage",
+      "activeTab",
+      "tabs"
     ],
     "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvEPBe5fyp2ikmAoz4Cjxjdulazy6aRWSbsjqsWXWQi/iCbmLRXeT3erkPXt6EWJYVgr6HdV4j/kUXpQZYK/Nh4/GLqDDnWUxWRTjgjUrqG0bbs/aPFkI8a0juioyH8yCX5FtJiyKuEw1jv8Lt1u+x/etbGRaWLV9Bp/emKHQWDIgnAxCq0AmddG4vKSZY5m/gWww2ZmblyEgLpNHxhk9xrgPOUnHYLMBba7n8OiXFAkSDoe/31REOL4mKecrakHRa9t1cIFYQYTXHXQTZvxcjZ8iJ4KUeWKYJCMwPSTG2Y6mCxqdXr/rlO10VHKvA1yt9fFyH56uPT4NKKl1Cjfo4wIDAQAB"
   }
